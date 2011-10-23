@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Occupy Together Streams</title>
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.4/jquery.min.js"></script>
+        <style type="text/css">
+            td {
+                vertical-align: top;
+            }
+        </style>
+    </head>
+
+    <body>
+        <table>
+            <tr>
+                <td>
+                    <select name="cell1" id="cell1" class="city-selector"></select>
+                    <div id="cell1-content"></div>
+                </td>
+
+                <td>
+                    <select name="cell2" id="cell2" class="city-selector"></select>
+                    <div id="cell2-content"></div>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    <select name="cell3" id="cell3" class="city-selector"></select>
+                    <div id="cell3-content"></div>
+                </td>
+
+                <td>
+                    <select name="cell4" id="cell4" class="city-selector"></select>
+                    <div id="cell4-content"></div>
+                </td>
+            </tr>
+        </table>
+
+        <script type="text/javascript">
+            $(document).ready(function() {
+                var occupyStreams = {
+                    'Select an Occupation' : '',
+                    'Occupy Atlanta (Georgia, USA)' : 'occupyatlanta',
+                    'Occupy Austin (Texas, USA)' : 'occupyaustin',
+                    'Occupy Baltimore (Maryland, USA)' : 'occupybaltimore',
+                    'Occupy Boston (Massachusets, USA)' : 'occupyboston',
+                    'Occupy Indianapolis (Indiana, USA)' : 'occupyindy',
+                    'Occupy London (United Kingdom)' : 'occupylsx',
+                    'Occupy Los Angeles (California, USA)' : 'owslosangeles',
+                    'Occupy New Orleans (Louisiana, USA)' : 'occupynola',
+                    'Occupy Pittsburgh (Pennsylvania, USA)' : 'occupypittsburgh',
+                    'Occupy San Diego (California, USA)' : 'occupysandiegolivefeed',
+                    'Occupy San Francisco (California, USA)' : 'occupyfdsf',
+                    'Occupy Seattle (Washington, USA)' : 'owsoccupyseattle',
+                    'Occupy Tampa (Florida, USA)' : 'occupytampa',
+                    'Occupy Vancouver (Washington, USA)' : 'occupythecouve',
+                    'Occupy Wall Street (New York, USA)' : 'globalrevolution',
+                    'Occupy Winnipeg (Manitoba, Canada)' : 'occupywinnipeg',
+                };
+
+                // Populate the occupation selectors.
+                $('.city-selector').each(function() {
+                    var selectValues = '';
+
+                    $.each(occupyStreams, function(title, value) {
+                        selectValues += '<option value="' + value + '">' + title + "</option>\n";
+                    });
+
+                    $('#' + $(this).attr('id')).append(selectValues);
+                });
+
+                // Set up the click handler.
+                $('.city-selector').change(function() {
+                    //alert($this.val());
+                    var targetCellId = $(this).attr('id') + '-content';
+
+                    $('#' + targetCellId).empty();
+                    $('#' + targetCellId).append('<iframe width="480" height="295" src="http://cdn.livestream.com/embed/' + $('#' + $(this).attr('id')).val() + '?layout=4&amp;height=295&amp;width=480&amp;autoplay=false" style="border:0;outline:0" frameborder="0" scrolling="no"></iframe>');
+                });
+                
+            });
+        </script>
+    </body>
+</html>

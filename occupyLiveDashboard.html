@@ -80,11 +80,14 @@
 
                 // Set up the click handler.
                 $('.city-selector').change(function() {
-                    //alert($this.val());
                     var targetCellId = $(this).attr('id') + '-content';
+                    var liveStreamUsername = $('#' + $(this).attr('id')).val();
 
                     $('#' + targetCellId).empty();
-                    $('#' + targetCellId).append('<iframe width="480" height="295" src="http://cdn.livestream.com/embed/' + $('#' + $(this).attr('id')).val() + '?layout=4&amp;height=295&amp;width=480&amp;autoplay=true" style="border:0;outline:0" frameborder="0" scrolling="no"></iframe>');
+
+                    if (liveStreamUsername != '') {
+                        $('#' + targetCellId).append('<iframe width="480" height="295" src="http://cdn.livestream.com/embed/' + liveStreamUsername + '?layout=4&amp;height=295&amp;width=480&amp;autoplay=true" style="border:0;outline:0" frameborder="0" scrolling="no"></iframe>');
+                    }
                 });
                 
             });
